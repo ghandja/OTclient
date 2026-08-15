@@ -1,0 +1,9 @@
+Module
+  name: game_playermount
+  description: Manage player mounts
+  author: BeniS
+  website: https://github.com/Jattartajjar/CrystalOTC
+  sandboxed: true
+  scripts: [ playermount ]
+  @onLoad: init()
+  @onUnload: terminate()

@@ -1,0 +1,60 @@
+{
+  "name": "otclient",
+  "version-string": "1.0.0",
+  "dependencies": [
+    "asio",
+    "abseil",
+    "cpp-httplib",
+    "cppcodec",
+    "discord-rpc",
+    "liblzma",
+    "libobfuscate",
+    "libogg",
+    "libvorbis",
+    "nlohmann-json",
+    "openal-soft",
+    "openssl",
+    "parallel-hashmap",
+    "physfs",
+    "protobuf",
+    "pugixml",
+    "stduuid",
+    "zlib",
+    "bshoshany-thread-pool",
+    "fmt",
+    "utfcpp",
+    "gtest",
+    "freetype",
+    {
+      "name": "inih",
+      "features": [
+        "cpp"
+      ]
+    },
+    {
+      "name": "luajit",
+      "platform": "!android & !wasm32"
+    },
+    {
+      "name": "opengl",
+      "platform": "windows | linux"
+    },
+    {
+      "name": "glew",
+      "platform": "windows | osx"
+    },
+    {
+      "name": "angle",
+      "platform": "windows"
+    },
+    {
+      "name": "vulkan-headers",
+      "platform": "windows"
+    },
+    {
+      "name": "vulkan-memory-allocator",
+      "platform": "windows"
+    }
+  ],
+  "builtin-baseline": "9e593bb18ea69cc5095e012465dcd675a822ed0d"
+}

@@ -1,0 +1,9 @@
+Module
+  name: game_spelllist
+  description: View available spells
+  author: Summ, Edubart
+  website: https://github.com/Jattartajjar/CrystalOTC
+  sandboxed: true
+  scripts: [ spelllist ]
+  @onLoad: init()
+  @onUnload: terminate()

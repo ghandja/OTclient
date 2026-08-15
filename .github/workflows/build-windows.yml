@@ -1,0 +1,167 @@
+name: Build - Windows
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "src/**"
+      - "vcpkg.json"
+      - "CMakeLists.txt"
+      - ".github/workflows/build-windows.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "vcpkg.json"
+      - "CMakeLists.txt"
+      - ".github/workflows/build-windows.yml"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+env:
+  CMAKE_BUILD_PARALLEL_LEVEL: 2
+  MAKEFLAGS: "-j 2"
+
+jobs:
+  build:
+    if: ${{ github.event_name != 'pull_request' || !github.event.pull_request.draft }}
+    name: windows-2022-release
+    runs-on: windows-2022
+
+    concurrency:
+      group: crystalotc-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get vcpkg commit ID
+        id: vcpkg-step
+        shell: pwsh
+        run: |
+          $json = Get-Content vcpkg.json -Raw | ConvertFrom-Json
+          $commit = $json.'builtin-baseline'
+          echo "vcpkgGitCommitId=$commit" >> $env:GITHUB_OUTPUT
+
+      - name: Validate vcpkg baseline SHA
+        shell: pwsh
+        run: |
+          $SHAS = "${{ steps.vcpkg-step.outputs.vcpkgGitCommitId }}"
+          if ([string]::IsNullOrEmpty($SHAS)) {
+            echo "::error title=Missing vcpkg baseline::Provide a full 40-char vcpkgGitCommitId."
+            exit 1
+          }
+          if ($SHAS -notmatch '^[0-9a-f]{40}$') {
+            echo "::error title=Invalid vcpkg baseline::vcpkgGitCommitId must be a full 40-char commit SHA."
+            exit 1
+          }
+
+      - name: Compute vcpkg.json hash
+        id: hash
+        shell: pwsh
+        run: |
+          $json = Get-Content "vcpkg.json" -Raw -Encoding UTF8
+          $bytes = [System.Text.Encoding]::UTF8.GetBytes($json)
+          $sha256 = [System.Security.Cryptography.SHA256]::Create()
+          $hashBytes = $sha256.ComputeHash($bytes)
+          $hash = [BitConverter]::ToString($hashBytes) -replace '-', ''
+          "hash=$hash" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+
+      - name: Cache vcpkg artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ github.workspace }}/vcpkg/installed
+            ${{ github.workspace }}/vcpkg/buildtrees
+            ${{ github.workspace }}/vcpkg/downloads
+          key: vcpkg-windows-release-${{ steps.hash.outputs.hash }}
+          restore-keys: |
+            vcpkg-windows-release-
+
+      - name: Compiler cache (sccache)
+        uses: hendrikmuhs/ccache-action@main
+        with:
+          max-size: "1G"
+          variant: "sccache"
+          key: ccache-windows-release
+          restore-keys: |
+            ccache-windows-release
+
+      - name: Remove Windows pre-installed MySQL (for clean builds)
+        run: Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "C:/mysql*"
+
+      - name: Install vcpkg
+        uses: lukka/run-vcpkg@a400452f634fe49e9f18d388aeb1809dcc642136
+        with:
+          vcpkgGitCommitId: ${{ steps.vcpkg-step.outputs.vcpkgGitCommitId }}
+
+      - name: Get latest CMake and Ninja
+        uses: lukka/get-cmake@v3.31.6
+
+      - name: Configure and Build
+        uses: lukka/run-cmake@main
+        with:
+          configurePreset: windows-release
+          buildPreset: windows-release
+
+      - name: Prepare artifact folder
+        shell: pwsh
+        run: |
+          $artifactDir = "$env:GITHUB_WORKSPACE\artifacts"
+          New-Item -ItemType Directory -Force -Path $artifactDir | Out-Null
+
+          $exePath = Get-ChildItem -Recurse -Path "$env:GITHUB_WORKSPACE\build" -Filter "otclient*.exe" | Select-Object -First 1
+
+          if (-not $exePath) {
+            Write-Error "otclient*.exe not found!"
+            exit 1
+          }
+
+          Copy-Item $exePath.FullName -Destination "$artifactDir\CrystalOTC.exe"
+
+          $dlls = Get-ChildItem -Path $exePath.Directory.FullName -Filter "*.dll"
+          foreach ($dll in $dlls) {
+            Copy-Item $dll.FullName -Destination $artifactDir
+          }
+
+      - name: Upload executable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CrystalOTC-windows-release
+          path: ${{ github.workspace }}/artifacts
+
+  release:
+    name: Publish "latest" release
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: CrystalOTC-windows-release
+          path: artifacts
+
+      - name: Zip binaries
+        run: cd artifacts && zip -r ../CrystalOTC-windows.zip .
+
+      - name: Recreate "latest" release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest -R "$GITHUB_REPOSITORY" --cleanup-tag --yes || true
+          gh release create latest CrystalOTC-windows.zip \
+            -R "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --prerelease \
+            --title "Latest build ($(date -u +%Y-%m-%d), ${GITHUB_SHA::7})" \
+            --notes "Automatic build of the latest \`main\` commit ${GITHUB_SHA::7}.
+
+          Contains the client executable and required DLLs. Game assets are NOT included - download \`data/things\` separately (see the README or the wiki's Game Assets page)."

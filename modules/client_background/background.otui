@@ -1,0 +1,16 @@
+Panel
+  id: background
+  image-source: /images/background_crystal1
+  // smoothing enabled: backgrounds are scaled to the window size, without smooth pixels are visible
+  image-smooth: true
+  // fixed-ratio = "cover" mode: fills the window keeping the aspect ratio, excess is cropped
+  // CENTERED along one axis. Backgrounds are ~16:9, so with a typical window the cropping is
+  // negligible. (There used to be margin-top: -90 here for the old background - it stretched the
+  // widget beyond the window and cut off the top of the image with the logo.)
+  image-fixed-ratio: true
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.bottom: parent.bottom
+
+  focusable: false

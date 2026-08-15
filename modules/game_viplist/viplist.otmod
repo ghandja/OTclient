@@ -1,0 +1,9 @@
+Module
+  name: game_viplist
+  description: Manage vip list window
+  author: baxnie, edubart
+  website: https://github.com/Jattartajjar/CrystalOTC
+  sandboxed: true
+  scripts: [ viplist ]
+  @onLoad: controllerVip:init()
+  @onUnload: controllerVip:terminate()

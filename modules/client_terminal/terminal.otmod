@@ -1,0 +1,9 @@
+Module
+  name: client_terminal
+  description: Read-only terminal for viewing client log output
+  author: edubart
+  website: https://github.com/Jattartajjar/CrystalOTC
+  scripts: [ terminal ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()
