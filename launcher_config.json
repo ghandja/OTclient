@@ -1,0 +1,32 @@
+{
+    "server_name": "Chapadonia",
+    "current_version": "1.0.0",
+    "description": "Cliente oficial do servidor Chapadonia - Tibia 1525",
+
+    "github_username": "ghandja",
+    "github_repository": "OTclient",
+    "client_zip_filename": "tibia-client.zip",
+    "release_tag": "v1.0.0",
+    "zip_file": "tibia-client.zip",
+    "auto_install_updates": true,
+
+    "enable_auto_update": true,
+    "auto_install_launcher_updates": false,
+
+    "protected_folders": [
+        "minimap",
+        "conf",
+        "characterdata",
+        "screenshots"
+    ],
+
+    "check_for_updates_on_startup": true,
+    "show_changelog": true,
+    "backup_before_update": true,
+
+    "server_host": "127.0.0.1",
+    "server_login_port": 8080,
+    "server_protocol": 1525,
+    "server_http_login": true,
+    "server_login_path": "login.php"
+}
