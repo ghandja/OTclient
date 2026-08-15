@@ -1,6 +1,13 @@
 # Normalize source code before commits
 *.lua eol=lf 
 *.txt eol=lf 
-*.ot* eol=lf 
+*.otui eol=lf 
+*.otmod eol=lf 
+*.otml eol=lf 
 *.cpp eol=lf 
 *.h   eol=lf 
+
+# Binary data - never apply line-ending conversion
+*.otmm binary
+*.otb binary
+*.otbm binary
