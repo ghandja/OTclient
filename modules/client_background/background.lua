@@ -3,12 +3,11 @@
 local background
 -- The only pool of login screen backgrounds - randomized once at every client startup.
 local BACKGROUNDS = {
-	"/images/background_crystal1",
-	"/images/background_crystal2",
-	"/images/background_crystal3",
-	"/images/background_crystal4",
-	"/images/background_crystal5",
-	"/images/background_crystal6"
+	"/images/background5",
+	"/images/background6",
+	"/images/background7",
+	"/images/background8",
+	"/images/background9"
 }
 local toggleState = true
 local timeLoopBackgroundEffect = 5000

@@ -49,9 +49,9 @@ if ENABLE_SERVERS then
     -- Each entry defines port, protocol, and authentication options.
     -- @table Servers_init
     --
-    -- Local Crystal Server configuration
+    -- Local Chapadonia Server configuration
     Servers_init = {
-        ["Crystal Server (Local)"] = {
+        ["Chapadonia"] = {
             host = "127.0.0.1/login.php",
             port = 8080,
             protocol = 1525,
@@ -61,7 +61,7 @@ if ENABLE_SERVERS then
     }
 end
 
-g_app.setName("CrystalOTC");
+g_app.setName("Chapadonia");
 g_app.setCompactName("crystalotc");
 g_app.setOrganizationName("Crystal");
 

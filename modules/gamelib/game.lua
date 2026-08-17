@@ -185,7 +185,8 @@ function g_game.getSupportedClients()
 		1510,
 		1511,
 		1520,
-		1521
+		1521,
+		1525
 	}
 end
 
