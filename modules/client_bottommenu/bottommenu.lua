@@ -85,17 +85,14 @@ function init()
 		showOffWindow.title:setText(tr(randomItem.Title))
 		image:setImageSource(randomItem.image)
 		description:setText(tr(randomItem.description))
-		monsterOutfit:setVisible(false)
-		bossOutfit:setVisible(false)
+		-- Don't hide outfits here, they will be shown by setBoostedCreatureAndBoss
 		widget:resize(widget:getWidth(), description:getHeight())
 
 		monsterImage = boostedWindow:recursiveGetChildById("monsterImage")
 		bossImage = boostedWindow:recursiveGetChildById("bossImage")
 
-		monsterImage:setImageSource("images/icon-questionmark")
-		monsterImage:setVisible(true)
-		bossImage:setImageSource("images/icon-questionmark")
-		bossImage:setVisible(true)
+		monsterImage:setVisible(false)
+		bossImage:setVisible(false)
 	end
 
 	connect(g_game, {
