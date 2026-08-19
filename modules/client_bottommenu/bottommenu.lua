@@ -741,7 +741,7 @@ local function startBoostedAnimation(outfitWidget)
 	creature:setStaticWalking(BOOSTED_WALK_SPEED)
 end
 
-local function applyToBoostedSlot(raceId, outfitWidget, imageWidget, fileName)
+local function applyToBoostedSlot(raceId, outfitWidget, imageWidget, fileName, serverOutfit)
 	if not raceId then
 		return
 	end
@@ -749,10 +749,23 @@ local function applyToBoostedSlot(raceId, outfitWidget, imageWidget, fileName)
 	local raceData = g_things.getRaceData(raceId)
 
 	if raceData.raceId == 0 then
-		local msg = string.format("[%s] Creature with race id %s was not found.", fileName, raceId)
-
-		g_logger.warning(msg)
-
+		if serverOutfit and serverOutfit.looktype and serverOutfit.looktype > 0 then
+			outfitWidget:setOutfit({
+				type = serverOutfit.looktype,
+				auxType = 0,
+				addons = serverOutfit.addons or 0,
+				head = serverOutfit.head or 0,
+				body = serverOutfit.body or 0,
+				legs = serverOutfit.legs or 0,
+				feet = serverOutfit.feet or 0,
+			})
+			outfitWidget:setVisible(true)
+			imageWidget:setVisible(false)
+			startBoostedAnimation(outfitWidget)
+		else
+			local msg = string.format("[%s] Creature with race id %s was not found.", fileName, raceId)
+			g_logger.warning(msg)
+		end
 		return
 	end
 
@@ -769,6 +782,20 @@ function setBoostedCreatureAndBoss(data)
 
 	local fileName = "bottommenu.lua"
 
-	applyToBoostedSlot(data.creatureraceid or data.raceid, monsterOutfit, monsterImage, fileName)
-	applyToBoostedSlot(data.bossraceid, bossOutfit, bossImage, fileName)
+	applyToBoostedSlot(data.creatureraceid or data.raceid, monsterOutfit, monsterImage, fileName, {
+		looktype = data.creaturelooktype,
+		head = data.creaturelookhead,
+		body = data.creaturelookbody,
+		legs = data.creaturelooklegs,
+		feet = data.creaturelookfeet,
+		addons = data.creaturelookaddons,
+	})
+	applyToBoostedSlot(data.bossraceid, bossOutfit, bossImage, fileName, {
+		looktype = data.bosslooktype,
+		head = data.bosslookhead,
+		body = data.bosslookbody,
+		legs = data.bosslooklegs,
+		feet = data.bosslookfeet,
+		addons = data.bosslookaddons,
+	})
 end
