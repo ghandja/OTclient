@@ -526,7 +526,7 @@ local STORE_DESCRIPTION_HINTS = {
 	},
 	{
 		keyword = "transferableprice",
-		text = "can only be purchased with transferable Tibia Coins",
+		text = "can only be purchased with transferable Coins",
 		icon = "{transferablepriceicon}"
 	},
 	{

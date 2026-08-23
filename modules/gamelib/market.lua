@@ -161,7 +161,7 @@ MarketCategoryStrings = {
 	"Swords",
 	"Wands and Rods",
 	"Premium Scrolls",
-	"Tibia Coins",
+	"Coins",
 	[255] = "Weapons"
 }
 

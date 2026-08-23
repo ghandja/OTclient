@@ -15,7 +15,7 @@ StoreWindow
 
   GiftCoinsTitle
     id: transferPointsLabel
-    !text: tr('Gift Tibia Coins')
+    !text: tr('Gift Coins')
     text-align: center
     anchors.top: parent.top
     anchors.left: parent.left
@@ -25,7 +25,7 @@ StoreWindow
 
   GiftCoinsLabel
     id: descriptionText
-    !text: tr('Please select the amount of Tibia\nCoins you like to gift and enter the\nname of the character that should\nreceive the Tibia Coins.')
+    !text: tr('Please select the amount of Coins you like to gift and enter the\nname of the character that should\nreceive the Coins.')
     text-wrap: true
     text-auto-resize: true
     anchors.top: transferPointsLabel.bottom
@@ -56,7 +56,7 @@ StoreWindow
 
   GiftCoinsLabel
     id: transferableAmount
-    !text: tr('Transferable Tibia Coins:')
+    !text: tr('Transferable Coins:')
     anchors.top: recipient.bottom
     anchors.left: parent.left
     size: 155 12

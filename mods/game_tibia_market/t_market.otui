@@ -1637,7 +1637,7 @@ MarketMainWindow < Panel
     margin-left: 3
     image-source: /images/ui/getCoins
     image-clip: 0 0 64 20
-    !tooltip: tr('Get Tibia Coins')
+    !tooltip: tr('Get Coins')
     @onClick: modules.game_store.getCoinsWebsite()
     $hover !pressed:
       image-clip: 0 0 64 20
@@ -1901,7 +1901,7 @@ MarketHistory < Panel
       margin-left: 3
       image-source: /images/ui/getCoins
       image-clip: 0 0 64 20
-      !tooltip: tr('Get Tibia Coins')
+      !tooltip: tr('Get Coins')
       @onClick: modules.game_store.getCoinsWebsite()
       $hover !pressed:
         image-clip: 0 0 64 20
@@ -2069,7 +2069,7 @@ MarketHistory < Panel
       margin-left: 5
       image-source: /images/ui/getCoins
       image-clip: 0 0 64 20
-      !tooltip: tr('Get Tibia Coins')
+      !tooltip: tr('Get Coins')
       @onClick: modules.game_store.getCoinsWebsite()
       $hover !pressed:
         image-clip: 0 0 64 20

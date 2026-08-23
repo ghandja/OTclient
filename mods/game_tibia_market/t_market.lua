@@ -1163,9 +1163,9 @@ function onUpdateResourceValue()
 
 	local coinTooltip = {}
 
-	setStringColor(coinTooltip, "Total Tibia Coins: " .. comma_value(normalCoins + transferableCoins), "#3f3f3f")
+	setStringColor(coinTooltip, "Total Coins: " .. comma_value(normalCoins + transferableCoins), "#3f3f3f")
 	setStringColor(coinTooltip, " $", "#f7e6fe")
-	setStringColor(coinTooltip, "\nIncluded transferable Tibia Coins: " .. comma_value(transferableCoins), "#3f3f3f")
+	setStringColor(coinTooltip, "\nIncluded transferable Coins: " .. comma_value(transferableCoins), "#3f3f3f")
 	setStringColor(coinTooltip, " $", "#f7e6fe")
 
 	local totalGold = playerBank + playerInventory
@@ -1317,7 +1317,7 @@ function configureList()
 		"Weapons: Swords",
 		"Weapons: Wands",
 		nil,
-		"Tibia Coins",
+		"Coins",
 		"Creature Products",
 		"Quivers",
 		"Soul Cores",

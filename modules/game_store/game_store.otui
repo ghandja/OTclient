@@ -269,7 +269,7 @@ StoreWindow
       focusable: false
       margin-bottom: 4
       image-source: /images/icons/icon-tibiacointransferable
-      !tooltip: tr('Transferable Tibia Coins can be used in the Store or transferred to another character.')
+      !tooltip: tr('Transferable Coins can be used in the Store or transferred to another character.')
 
     Label
       id: lblTibiaTransfer
@@ -290,7 +290,7 @@ StoreWindow
       margin-bottom: 4
       image-source: /images/icons/icon-tibiacoin
       focusable: false
-      !tooltip: tr('Tibia Coins can be used to purchase products in the Store.')
+      !tooltip: tr('Coins can be used to purchase products in the Store.')
 
     Label
       id: lblTibiaCoins
@@ -315,7 +315,7 @@ StoreWindow
     image-source: /images/ui/button-green-up
     image-border: 5
     image-clip: 0 0 98 40
-    !tooltip: tr('Get Tibia Coins')
+    !tooltip: tr('Get Coins')
     icon: /images/icons/icon-tibiacoin
     icon-align: center
     icon-offset: 8 0
