@@ -1,4 +1,4 @@
-﻿-- chunkname: @/client_options/cip_import_converter.lua
+-- chunkname: @/client_options/cip_import_converter.lua
 
 CipImportConverter = {}
 
@@ -411,7 +411,7 @@ function CipImportConverter.buildPreviewText(converted, stats)
 		tr("Outfit presets from CIP (apply on login): %s", tostring(stats.outfitBridge or 0)),
 		tr("Ignored entries: %s", tostring(stats.hotkeysIgnored + stats.optionsIgnored)),
 		"",
-		tr("CrystalOTC-only settings preserved (not modified):")
+		tr("Chapadonia-only settings preserved (not modified):")
 	}
 	local preserved = CipImportMappings.OTCLIENT_PRESERVED_SETTINGS or {
 		"game_helper_data.json",

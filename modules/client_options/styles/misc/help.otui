@@ -45,7 +45,7 @@ UIWidget
       anchors.right: parent.right
       anchors.verticalCenter: manualBtn.verticalCenter
       margin-right: 5
-      !specialtooltip: tr("Clicking this button will open the manual on the CrystalOTC website. The manual offers detailed descriptions concerning nearly all aspects of Tibia, e.g. game play, client interface or system requirements. Whatever information you need about Tibia, it is very likely that you will find it in the manual.")
+      !specialtooltip: tr("Clicking this button will open the manual on the Chapadonia website. The manual offers detailed descriptions concerning nearly all aspects of Tibia, e.g. game play, client interface or system requirements. Whatever information you need about Tibia, it is very likely that you will find it in the manual.")
 
     QtButton
       id: faqBtn
@@ -64,7 +64,7 @@ UIWidget
       anchors.right: parent.right
       anchors.verticalCenter: faqBtn.verticalCenter
       margin-right: 5
-      !specialtooltip: tr("This button will bring you to the FAQ section on the CrystalOTC website. Here, a large number of questions concerning important aspects such as gameplay or the account system are answered in a concise and informative way. Some sections specifically cover problems with the client or with internet connections, so the FAQ can also aid you with troubleshooting if you have a technical problem with the game. Of course, the number of problems covered here is limited, but when it comes to finding answers quickly, nothing can beat the FAQ.")
+      !specialtooltip: tr("This button will bring you to the FAQ section on the Chapadonia website. Here, a large number of questions concerning important aspects such as gameplay or the account system are answered in a concise and informative way. Some sections specifically cover problems with the client or with internet connections, so the FAQ can also aid you with troubleshooting if you have a technical problem with the game. Of course, the number of problems covered here is limited, but when it comes to finding answers quickly, nothing can beat the FAQ.")
 
     QtButton
       id: infoBtn

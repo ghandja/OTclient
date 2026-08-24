@@ -72,7 +72,7 @@ MainWindowHigh
       anchors.right: parent.right
       margin-top: -7
       margin-left: -1
-      !text: tr('Step 1 of 3:\nPlease select the CrystalOTC Rule which is violated.')
+      !text: tr('Step 1 of 3:\nPlease select the Chapadonia Rule which is violated.')
 
     HorizontalSeparator
       id: step1Separator

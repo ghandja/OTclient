@@ -1,4 +1,4 @@
-﻿-- chunkname: @/game_things/things.lua
+-- chunkname: @/game_things/things.lua
 
 ThingsLoaderController = Controller:new()
 
@@ -67,7 +67,7 @@ end
 
 local function load(version)
 	local errorList = {}
-	-- CrystalOTC: per-version assets (/things/1525/), not /things/assets/
+	-- Chapadonia: per-version assets (/things/1525/), not /things/assets/
 	local THINGS_ASSETS_PATH = "/things/" .. version .. "/"
 
 	if version >= 1281 and not g_game.getFeature(GameLoadSprInsteadProtobuf) then
@@ -127,7 +127,11 @@ local function load(version)
 	loaded = #errorList == 0
 
 	if loaded then
-		g_sounds.loadClientFiles(resolvepath("/sounds/"))
+		local soundsPath = resolvepath("/sounds/")
+
+		if g_resources.fileExists(soundsPath .. "catalog-sound.json") then
+			g_sounds.loadClientFiles(soundsPath)
+		end
 
 		return
 	end

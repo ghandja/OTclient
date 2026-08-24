@@ -172,7 +172,7 @@ ChecksAuctionCharacterWindow < MainWindowHigh
       text-wrap: true
  
     Label
-      !text: tr(' running on the CrystalOTC website in the section Char Bazaar.')
+      !text: tr(' running on the Chapadonia website in the section Char Bazaar.')
       font: $var-cip-font-new
       text-auto-resize: true
       color: #c0c0c0

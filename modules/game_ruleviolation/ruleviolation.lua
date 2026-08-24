@@ -1,4 +1,4 @@
-﻿-- chunkname: @/game_ruleviolation/ruleviolation.lua
+-- chunkname: @/game_ruleviolation/ruleviolation.lua
 
 rvreasons = {}
 rvreasons[1] = tr("1a) Offensive Name")
@@ -202,8 +202,8 @@ StatementReportReasons = {
 	},
 	{
 		id = 19,
-		title = tr("Publishing clearly wrong information about CrystalOTC"),
-		description = tr("Statements can be reported if they are made to publish clearly wrong information about CrystalOTC or its services.")
+		title = tr("Publishing clearly wrong information about Chapadonia"),
+		description = tr("Statements can be reported if they are made to publish clearly wrong information about Chapadonia or its services.")
 	},
 	{
 		id = 17,
@@ -212,8 +212,8 @@ StatementReportReasons = {
 	},
 	{
 		id = 19,
-		title = tr("False information to CrystalOTC"),
-		description = tr("Statements can be reported if they prove that a player has intentionally given wrong or misleading information concerning rule violation reports, complaints, bug reports or support requests to CrystalOTC.")
+		title = tr("False information to Chapadonia"),
+		description = tr("Statements can be reported if they prove that a player has intentionally given wrong or misleading information concerning rule violation reports, complaints, bug reports or support requests to Chapadonia.")
 	},
 	{
 		id = 14,
@@ -222,8 +222,8 @@ StatementReportReasons = {
 	},
 	{
 		id = 20,
-		title = tr("Attacking a CrystalOTC service"),
-		description = tr("Statements can be reported if they prove that a player has or wants to attack, disrupt or damage the operation of CrystalOTC servers, the game or any other part of CrystalOTC service.")
+		title = tr("Attacking a Chapadonia service"),
+		description = tr("Statements can be reported if they prove that a player has or wants to attack, disrupt or damage the operation of Chapadonia servers, the game or any other part of Chapadonia service.")
 	},
 	{
 		id = 20,
@@ -232,8 +232,8 @@ StatementReportReasons = {
 	},
 	{
 		id = 20,
-		title = tr("Violating the CrystalOTC Service Agreement"),
-		description = tr("Statements can be reported if they violate the CrystalOTC Service Agreement or prove that the CrystalOTC Service Agreement has been violated or is planned to be violated.")
+		title = tr("Violating the Chapadonia Service Agreement"),
+		description = tr("Statements can be reported if they violate the Chapadonia Service Agreement or prove that the Chapadonia Service Agreement has been violated or is planned to be violated.")
 	},
 	{
 		id = 20,
